@@ -7,4 +7,4 @@ dataDownload = DownloadData(
     start_date="2000-01-01",
     end_date=datetime.today().__str__()
 )
-dataDownload.run()
+dataDownload.check_and_update_data()

@@ -98,13 +98,62 @@ class DownloadData:
             df.to_csv(os.path.join(self.save_path, f"{name}.csv"), index=False)
             logger.info(f"Data fetched and saved to {name}.csv. Total records: {len(data)}")
 
-# name = "DaNang"
-# # Fetch data from 2000-01-01
-# start_date = "2000-01-01"
-# data = fetch_data_in_chunks(name, start_date, chunk_size=1000)
-#
-# # Convert to DataFrame and save to CSV
-# df = pd.DataFrame(data)
-# df.to_csv(f"{name}.csv", index=False)
-#
-# print(f"Data fetched and saved to {name}.csv. Total records: {len(data)}")
+    def check_and_update_data(self):
+        today = datetime.now().strftime("%Y-%m-%d")
+        for name in self.location:
+            file_path = os.path.join(self.save_path, f"{name}.csv")
+            if os.path.exists(file_path):
+                df = pd.read_csv(file_path)
+                if today in df["datetime"].values:
+                    logger.info(f"Data for {name} is up-to-date.")
+                    continue
+                else:
+                    start_date = df["datetime"].max()
+                    logger.info(f"Updating data for {name}.")
+                    new_data = self.fetch_weather_data(name, start_date, today)
+                    if new_data and 'days' in new_data:
+                        new_rows = []
+                        for day in new_data['days']:
+                            new_rows.append({
+                                "name": new_data.get("resolvedAddress", "Unknown"),
+                                "datetime": day.get("datetime"),
+                                "tempmax": day.get("tempmax"),
+                                "tempmin": day.get("tempmin"),
+                                "temp": day.get("temp"),
+                                "feelslikemax": day.get("feelslikemax"),
+                                "feelslikemin": day.get("feelslikemin"),
+                                "feelslike": day.get("feelslike"),
+                                "dew": day.get("dew"),
+                                "humidity": day.get("humidity"),
+                                "precip": day.get("precip"),
+                                "precipprob": day.get("precipprob"),
+                                "precipcover": day.get("precipcover"),
+                                "preciptype": day.get("preciptype"),
+                                "snow": day.get("snow"),
+                                "snowdepth": day.get("snowdepth"),
+                                "windgust": day.get("windgust"),
+                                "windspeed": day.get("windspeed"),
+                                "winddir": day.get("winddir"),
+                                "sealevelpressure": day.get("sealevelpressure"),
+                                "cloudcover": day.get("cloudcover"),
+                                "visibility": day.get("visibility"),
+                                "solarradiation": day.get("solarradiation"),
+                                "solarenergy": day.get("solarenergy"),
+                                "uvindex": day.get("uvindex"),
+                                "severerisk": day.get("severerisk"),
+                                "sunrise": day.get("sunrise"),
+                                "sunset": day.get("sunset"),
+                                "moonphase": day.get("moonphase"),
+                                "conditions": day.get("conditions"),
+                                "description": day.get("description"),
+                                "icon": day.get("icon"),
+                                "stations": day.get("stations")
+                            })
+                        df = pd.concat([df, pd.DataFrame(new_rows)])
+                        df.to_csv(file_path, index=False)
+                        logger.info(f"Data for {name} updated successfully.")
+                    else:
+                        logger.warning(f"No new data available for {name}.")
+            else:
+                logger.warning(f"File for {name} does not exist. Fetching full data.")
+                self.run()
