@@ -1,0 +1,60 @@
+Evaluation Summary for Hanoi_clean
+========================================
+
+Outlier Counts (IQR method):
+  - temp: Count = 0, Percentage = 0.00%
+  - humidity: Count = 0, Percentage = 0.00%
+  - precip: Count = 0, Percentage = 0.00%
+  - windspeed: Count = 0, Percentage = 0.00%
+
+Skewness and Kurtosis:
+  - temp: skewness = -0.5586, kurtosis = -0.5842
+  - humidity: skewness = -0.5317, kurtosis = -0.0878
+  - precip: skewness = 1.2071, kurtosis = -0.2824 (Skewness > 1 indicates a moderately skewed distribution)
+  - windspeed: skewness = 0.5101, kurtosis = -0.0476
+
+Stationarity Test (ADF) on Time Series:
+  - temp:
+    - ADF Statistic: -6.7531
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 38
+    - Number of Observations: 9139
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - humidity:
+    - ADF Statistic: -10.1045
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 27
+    - Number of Observations: 9150
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - precip:
+    - ADF Statistic: -9.2411
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 33
+    - Number of Observations: 9144
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - windspeed:
+    - ADF Statistic: -9.9905
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 35
+    - Number of Observations: 9142
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+
+--- 
+Suggested Preprocessing Steps based on Evaluation:
+  - Metric 'precip' is skewed. Consider applying transformations like log or box-cox to reduce skewness.

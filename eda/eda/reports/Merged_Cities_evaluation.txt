@@ -1,0 +1,62 @@
+Evaluation Summary for Merged_Cities
+========================================
+
+Outlier Counts (IQR method):
+  - temp: Count = 1587, Percentage = 5.76%
+  - humidity: Count = 438, Percentage = 1.59%
+  - precip: Count = 4025, Percentage = 14.62%
+  - windspeed: Count = 789, Percentage = 2.87%
+
+Skewness and Kurtosis:
+  - temp: skewness = -1.2407, kurtosis = 1.5304 (Skewness > 1 indicates a moderately skewed distribution)
+  - humidity: skewness = -0.5571, kurtosis = 0.4335
+  - precip: skewness = 8.8216, kurtosis = 132.9377 (Skewness > 1 indicates a moderately skewed distribution)
+  - windspeed: skewness = 2.2576, kurtosis = 26.3617 (Skewness > 1 indicates a moderately skewed distribution)
+
+Stationarity Test (ADF) on Time Series:
+  - temp:
+    - ADF Statistic: -12.1961
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 49
+    - Number of Observations: 27485
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+  - humidity:
+    - ADF Statistic: -12.3388
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 45
+    - Number of Observations: 27489
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+  - precip:
+    - ADF Statistic: -15.2931
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 43
+    - Number of Observations: 23829
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8617
+        10%: -2.5668
+    - Stationary: Yes
+  - windspeed:
+    - ADF Statistic: -13.2545
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 44
+    - Number of Observations: 27490
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+
+--- 
+Suggested Preprocessing Steps based on Evaluation:
+  - Metric 'temp' is skewed. Consider applying transformations like log or box-cox to reduce skewness.
+  - Metric 'precip' is skewed. Consider applying transformations like log or box-cox to reduce skewness.
+  - Metric 'windspeed' is skewed. Consider applying transformations like log or box-cox to reduce skewness.

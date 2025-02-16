@@ -1,0 +1,60 @@
+Evaluation Summary for Merged_Cities_clean
+========================================
+
+Outlier Counts (IQR method):
+  - temp: Count = 0, Percentage = 0.00%
+  - humidity: Count = 0, Percentage = 0.00%
+  - precip: Count = 0, Percentage = 0.00%
+  - windspeed: Count = 0, Percentage = 0.00%
+
+Skewness and Kurtosis:
+  - temp: skewness = -0.8003, kurtosis = -0.0683
+  - humidity: skewness = -0.4030, kurtosis = -0.1340
+  - precip: skewness = 1.1282, kurtosis = -0.4398 (Skewness > 1 indicates a moderately skewed distribution)
+  - windspeed: skewness = 0.4844, kurtosis = -0.0811
+
+Stationarity Test (ADF) on Time Series:
+  - temp:
+    - ADF Statistic: -12.3558
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 49
+    - Number of Observations: 27485
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+  - humidity:
+    - ADF Statistic: -12.2241
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 45
+    - Number of Observations: 27489
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+  - precip:
+    - ADF Statistic: -12.1126
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 44
+    - Number of Observations: 27490
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+  - windspeed:
+    - ADF Statistic: -13.2051
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 44
+    - Number of Observations: 27490
+    - Critical Values:
+        1%: -3.4306
+        5%: -2.8616
+        10%: -2.5668
+    - Stationary: Yes
+
+--- 
+Suggested Preprocessing Steps based on Evaluation:
+  - Metric 'precip' is skewed. Consider applying transformations like log or box-cox to reduce skewness.

@@ -1,0 +1,60 @@
+Evaluation Summary for HoChiMinh_clean
+========================================
+
+Outlier Counts (IQR method):
+  - temp: Count = 0, Percentage = 0.00%
+  - humidity: Count = 0, Percentage = 0.00%
+  - precip: Count = 0, Percentage = 0.00%
+  - windspeed: Count = 0, Percentage = 0.00%
+
+Skewness and Kurtosis:
+  - temp: skewness = 0.0146, kurtosis = -0.0846
+  - humidity: skewness = -0.3363, kurtosis = -0.3721
+  - precip: skewness = 1.1983, kurtosis = -0.3695 (Skewness > 1 indicates a moderately skewed distribution)
+  - windspeed: skewness = 0.4665, kurtosis = -0.1857
+
+Stationarity Test (ADF) on Time Series:
+  - temp:
+    - ADF Statistic: -8.8902
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 19
+    - Number of Observations: 9158
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - humidity:
+    - ADF Statistic: -6.5666
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 22
+    - Number of Observations: 9155
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - precip:
+    - ADF Statistic: -4.5356
+    - p-value: 0.0002 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 36
+    - Number of Observations: 9141
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+  - windspeed:
+    - ADF Statistic: -8.0342
+    - p-value: 0.0000 (p-value < 0.05 suggests the series is stationary)
+    - Used Lag: 32
+    - Number of Observations: 9145
+    - Critical Values:
+        1%: -3.4311
+        5%: -2.8619
+        10%: -2.5669
+    - Stationary: Yes
+
+--- 
+Suggested Preprocessing Steps based on Evaluation:
+  - Metric 'precip' is skewed. Consider applying transformations like log or box-cox to reduce skewness.
